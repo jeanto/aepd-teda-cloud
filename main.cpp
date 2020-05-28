@@ -619,7 +619,6 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
 	vector<double> pop_sf;
 	vector<double> pop_cr;
 	vector<double> pop_freq;
-	//vector<node> popr_old;
 	pop_sf.resize(SUBPOP_SIZE);
 	pop_cr.resize(SUBPOP_SIZE);
 	pop_freq.resize(SUBPOP_SIZE);	
@@ -690,7 +689,6 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
 	// 		fitness evaluations over the max number of fitness 
 	// 		evaluations, the search is terminated. So, this 
 	// 		program is unconcerned about L-SHADE algorithm directly
-	
 	vector<double> dif, goodCR, goodSF, goodFreq, dif_val;
 	for (int i = 0; i < popr.size(); i++) {
 		double difi = fabs(popr[i].fitness - children[i].fitness);
@@ -1161,7 +1159,7 @@ int create_new_individuo(int rank, int rank_source, vector<double> ind, vector<d
 void save_log(int fun, int rank, double best, double error, double time, 
 				int num_mig, int num_mig_new_inds, double eff_moves){
 
-	string filePath = "../logs/aepd_teda_class/log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
+	string filePath = "../logs/aepd_teda_cloud/log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
 
     ofstream ofs(filePath.c_str(), ios_base::out | ios_base::app);
     ofs << DIM << ';' << fun << ';' << rank << ';' 
@@ -1183,7 +1181,7 @@ void save_log(int fun, int rank, double best, double error, double time,
 void save_1run(int fun, int rank, vector<int> gen_is_migrated, 
 				vector<int> gen_is_improved, vector<int> improve_after_mig,
 				vector<double> best_fit){
-	string filePath = "../logs/aepd_teda_class/one_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
+	string filePath = "../logs/aepd_teda_cloud/one_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
 
 	ofstream ofs(filePath.c_str(), ios_base::out | ios_base::ate);
     ofs << DIM << ';' << fun << ';' << rank << '\n' << '\n';
@@ -1198,7 +1196,7 @@ void save_1run(int fun, int rank, vector<int> gen_is_migrated,
 }
 
 void save_std(int fun, int rank, int GEN, vector<double> std){
-	string filePath = "../logs/aepd_teda_class/std_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
+	string filePath = "../logs/aepd_teda_cloud/std_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
 	ofstream ofs(filePath.c_str(), ios_base::out | ios_base::app);
     ofs << DIM << ';' << fun << ';' << rank << '\n' << '\n';
 	ofs << GEN << " ";
@@ -1208,7 +1206,7 @@ void save_std(int fun, int rank, int GEN, vector<double> std){
 }
 
 void save_entropy(int fun, int rank, int GEN, double ent){
-	string filePath = "../logs/aepd_teda_class/entropy_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
+	string filePath = "../logs/aepd_teda_cloud/entropy_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
 
     ofstream ofs(filePath.c_str(), ios_base::out | ios_base::app);
     ofs << DIM << ';' << fun << ';' << ';' << rank << ';' << GEN << ';' 
