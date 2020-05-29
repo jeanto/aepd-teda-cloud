@@ -1,15 +1,11 @@
 
 /*
-  IDE-AEPD: Island-based Differential Evolution 
-  	with Auto-Enhanced Population Diversity. 
-	  based on Yang, M. Differential Evolution 
-	  	with Auto-Enhanced Population Diversity. 
-		IEEE Transactions on cybernetics, 2015. (AEPD)​
+  AEPD-TEDA-CLOUD
   
   	Implemented by C++ on Real-Parameter Single 
 	  Objective Optimization at CEC-2014.
 
-  Version: 2.0   Date: 20/Mai/2020
+  Version: 2.0   Date: 29/Mai/2020
   Written by Jean Nunes (jean.to[at]gmail.com)
 */
 
@@ -219,14 +215,15 @@ int main(int argc, char** argv) {
 	MPI_Request myRequestRecv[3];
 	MPI_Request myRequest;
 
-	int found_item = 0;
-	MPI_Request found_request;
+	int found_item;
+	MPI_Request found_request = MPI_REQUEST_NULL;;
 
 	MPI_Barrier(MPI_COMM_WORLD);
 
 	// island keeps a broadcasting openned to receive signal to exit
 	if (rank != MASTER){
-		MPI_Ibcast(&found_item, 1, MPI_INT, MASTER, MPI_COMM_WORLD, &found_request);
+		//MPI_Ibcast(&found_item, 1, MPI_INT, MASTER, MPI_COMM_WORLD, &found_request);
+		MPI_Irecv(&found_item, 1, MPI_INT, MASTER, 3, MPI_COMM_WORLD, &found_request);
 	}
 
 	// save number of island that exits
@@ -271,9 +268,15 @@ int main(int argc, char** argv) {
 				int exit_signal = 1;
 				cout 	<< "[" << rank << "]" << " diz que [" << rank_source 
 						<< "] terminou. Vou avisar a todos... " << endl;
-				MPI_Request bcast_request;
-				MPI_Ibcast(&exit_signal, 1, MPI_INT, MASTER, MPI_COMM_WORLD, &bcast_request);		
-				MPI_Wait(&bcast_request, MPI_STATUS_IGNORE);
+				
+				for (int i = 1; i < size; i++){
+					if (i != rank_source){
+						MPI_Send(&exit_signal, 1, MPI_INT, i, 3, MPI_COMM_WORLD);						
+					}
+				}
+				
+				//MPI_Ibcast(&exit_signal, 1, MPI_INT, MASTER, MPI_COMM_WORLD, &found_request);		
+				//MPI_Wait(&found_request, MPI_STATUS_IGNORE);
 				break;
 			}
 			else{
@@ -294,7 +297,7 @@ int main(int argc, char** argv) {
 				if (num_inds > popsize_teda){
 					num_inds = popsize_teda;
 				}
-				int tag_send 	= 2;
+				int tag_send = 2;
 				MPI_Send(&num_inds, 1, MPI_INT, rank_source, tag_send, MPI_COMM_WORLD);
 
 				for (int ni = 0; ni < num_inds; ni++){
@@ -305,13 +308,17 @@ int main(int argc, char** argv) {
 				cout 	<< "[" << rank << "] criou " << num_inds 
 						<< " individuos para: [" << rank_source 
 						<< "]" << "[" << nfe << "]" << endl;
-				//cout << "[" << rank << "] enviou um novo individuo para [" << rank_source << "]" << endl;
 			
 				if (nfe >= NUM_NFE){
+					cout 	<< "[" << rank << "] terminei. Vou avisar a todos!" << endl;
 					int exit_signal = 1;
-					MPI_Request bcast_request;
-					MPI_Ibcast(&exit_signal, 1, MPI_INT, MASTER, MPI_COMM_WORLD, &bcast_request);		
-					MPI_Wait(&bcast_request, MPI_STATUS_IGNORE);
+
+					for (int i = 1; i < size; i++){
+						MPI_Send(&exit_signal, 1, MPI_INT, i, 3, MPI_COMM_WORLD);						
+					}
+
+					//MPI_Ibcast(&exit_signal, 1, MPI_INT, MASTER, MPI_COMM_WORLD, &found_request);		
+					//MPI_Wait(&found_request, MPI_STATUS_IGNORE);
 					break;
 				}
 			}
@@ -409,8 +416,6 @@ int main(int argc, char** argv) {
 					<< bestr.fitness - optimum << "] [" 
 					<< enhan_stats.zg << "]" << endl;
 
-			//double migra_prob = rand_0_1();
-			//if (migra_prob < 0.05){
 			if (enhan_stats.zg == 1){
 
 				cout << "[" << rank << "] vou pedir para [" << MASTER << "]" << endl;
@@ -437,7 +442,8 @@ int main(int argc, char** argv) {
 				// some island terminated
 				if (exit_signal < 0) break;
 
-				cout << "[" << rank << "] acabou de pedir para [" << MASTER << "]" << endl;
+				cout 	<< "[" << rank << "] acabou de pedir para [" 
+						<< MASTER << "]" << endl;
 
 				int number_of_inds;
 
@@ -454,6 +460,7 @@ int main(int argc, char** argv) {
 						exit_signal = -10;
 						MPI_Cancel(&myRequestNumInds);
 						MPI_Request_free(&myRequestNumInds);	
+						cout << "[" << rank << "] {1} entrou no ibcast";
 						break;
 					}
 
@@ -461,6 +468,8 @@ int main(int argc, char** argv) {
 				} while (flag_recv != 1);
 
 				if (exit_signal < 0) break;
+
+				cout << "[" << rank << "] Inds: " << number_of_inds << endl;
 
 				flag_recv = 0;
 				vector<node> migrated_inds;
@@ -483,6 +492,7 @@ int main(int argc, char** argv) {
 							exit_signal = -10;
 							MPI_Cancel(&myRequestNewInd);
 							MPI_Request_free(&myRequestNewInd);
+							cout << "[" << rank << "] {2} entrou no ibcast";
 							break;
 						}
 
@@ -550,8 +560,7 @@ int main(int argc, char** argv) {
 				double ent = entropy_calc(popr);
 				save_entropy(FUN, rank, GEN, ent);
 			}
-		}
-		
+		}	
 	}
 	cout << "[" << rank << "] saindo..." << endl;
 	MPI_Barrier(MPI_COMM_WORLD);
@@ -629,7 +638,7 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
 	gg = gg + 1;
 	sort(popr.begin(), popr.end(), compare);
 	//cout << popr.size() << " - " << SUBPOP_SIZE << endl;
-	cout << " {1} " << popr.size() << " - " << SUBPOP_SIZE;
+	//cout << " {1} " << popr.size() << " - " << SUBPOP_SIZE;
     for (int target = 0; target < popr.size(); target++) {
 
 		// In each generation, CR_i and F_i used by 
@@ -651,15 +660,11 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
       	}
 
       	// generate F_i and repair its value
-		// is there risk of infinite loop?
-		//cout << " {1} " << target;
       	do {	
 			pop_sf[target] = cauchy_g(mu_sf, 0.1);
       	} while (pop_sf[target] <= 0);
 
       	// generate F_i and repair its value
-		// is there risk of infinite loop?
-		//cout << " {2} " << target;
       	do {	
 			pop_freq[target] = cauchy_g(mu_freq, 0.1);
       	} while (pop_freq[target] <= 0);		
@@ -678,7 +683,7 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
       	children[target] = operateCurrentToPBest1BinWithArchive(popr, target, 
 		  	p_best_ind, pop_sf[target], pop_cr[target], archive);
     }
-	cout << " {2} passou 1.";
+	//cout << " {2} passou 1.";
 	
     // evaluate the children's fitness values
     evaluatePopulation(children, optimum);
@@ -901,7 +906,6 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
 			
 			if (archive.pop.size() > archive.NP){
 				int tam_arc = archive.pop.size();
-				// is there risk of infinite loop?
 				cout << " {4} " << archive.pop.size() << " " << archive.NP;
 				do {
 					int del = rand() % archive.pop.size();
@@ -958,7 +962,7 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
 			popr_ls = new_point;
 		}
 	}
-	cout << " {5} passou." << endl; 
+	//cout << " {5} passou." << endl; 
 }
 
 void aepd_teda(vector<node> &popr, conv &convi, stag &stagi, 

@@ -52,8 +52,6 @@ node operateCurrentToPBest1BinWithArchive(vector<node> pop,
 
     int r1, r2;
     
-    // is there risk of infinite loop?
-    //cout << " {3} " << pop.size();
     do {
         r1 = rand() % pop.size();
     } while (r1 == target);
