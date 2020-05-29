@@ -219,7 +219,7 @@ int main(int argc, char** argv) {
 	MPI_Request myRequestRecv[3];
 	MPI_Request myRequest;
 
-	int found_item;
+	int found_item = 0;
 	MPI_Request found_request;
 
 	MPI_Barrier(MPI_COMM_WORLD);
@@ -278,6 +278,8 @@ int main(int argc, char** argv) {
 			}
 			else{
 				MPI_Recv(ind.data(), DIM, MPI_DOUBLE, rank_source, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
+				cout 	<< "[" << rank << "] solicitou. " << endl;
 
 				// TEDA Cloud
 				node indk;
@@ -420,7 +422,7 @@ int main(int argc, char** argv) {
 				
 				flag_send = 0;
 				do{
-					int found = 0;
+					found = 0;
 					MPI_Test(&found_request, &found, MPI_STATUS_IGNORE);
 					if (found){
 						exit_signal = -10;
@@ -446,7 +448,7 @@ int main(int argc, char** argv) {
 				
 				flag_recv = 0;
 				do{
-					int found = 0;
+					found = 0;
 					MPI_Test(&found_request, &found, MPI_STATUS_IGNORE);
 					if (found) {
 						exit_signal = -10;
@@ -474,7 +476,7 @@ int main(int argc, char** argv) {
 					MPI_Irecv(ind_mig.data(), DIM, MPI_DOUBLE, 
 							MASTER, 2, MPI_COMM_WORLD, &myRequestNewInd);
 
-					int found = 0;
+					found = 0;
 					do{
 						MPI_Test(&found_request, &found, MPI_STATUS_IGNORE);
 						if (found) {
@@ -509,7 +511,7 @@ int main(int argc, char** argv) {
 					//cout 	<< "[" << rank << "] " << number_of_inds 
 					//		<< " - " << popr.size() << endl;
 
-					if (SUBPOP_SIZE < DIM * 18){
+					if (SUBPOP_SIZE < (DIM * 18)){
 						popr.push_back(migrated_inds[ni]);
 					}
 					else{
@@ -549,8 +551,9 @@ int main(int argc, char** argv) {
 				save_entropy(FUN, rank, GEN, ent);
 			}
 		}
+		
 	}
-
+	cout << "[" << rank << "] saindo..." << endl;
 	MPI_Barrier(MPI_COMM_WORLD);
 			
 	const clock_t end_time = clock();
@@ -623,9 +626,10 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
 	pop_cr.resize(SUBPOP_SIZE);
 	pop_freq.resize(SUBPOP_SIZE);	
 
-	gg 		 = gg+1;
+	gg = gg + 1;
 	sort(popr.begin(), popr.end(), compare);
 	//cout << popr.size() << " - " << SUBPOP_SIZE << endl;
+	cout << " {1} " << popr.size() << " - " << SUBPOP_SIZE;
     for (int target = 0; target < popr.size(); target++) {
 
 		// In each generation, CR_i and F_i used by 
@@ -647,11 +651,15 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
       	}
 
       	// generate F_i and repair its value
+		// is there risk of infinite loop?
+		//cout << " {1} " << target;
       	do {	
 			pop_sf[target] = cauchy_g(mu_sf, 0.1);
       	} while (pop_sf[target] <= 0);
 
       	// generate F_i and repair its value
+		// is there risk of infinite loop?
+		//cout << " {2} " << target;
       	do {	
 			pop_freq[target] = cauchy_g(mu_freq, 0.1);
       	} while (pop_freq[target] <= 0);		
@@ -659,7 +667,6 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
       	if (pop_sf[target] > 1) pop_sf[target] = 1;
 		if (pop_freq[target] > 1) pop_freq[target] = 1;
 
-      	// Voltar aqui no C++
 		vector<double> sf_freqi(popr.size(), 0);
       	if(nfe <= NUM_NFE/2)
 			pop_sf[target] = sf_corr(freq_inti, pop_freq[target], G_Max, gg);
@@ -671,6 +678,7 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
       	children[target] = operateCurrentToPBest1BinWithArchive(popr, target, 
 		  	p_best_ind, pop_sf[target], pop_cr[target], archive);
     }
+	cout << " {2} passou 1.";
 	
     // evaluate the children's fitness values
     evaluatePopulation(children, optimum);
@@ -893,11 +901,12 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
 			
 			if (archive.pop.size() > archive.NP){
 				int tam_arc = archive.pop.size();
-				do
-				{
-					int del = rand() % (archive.pop.size()-1);
+				// is there risk of infinite loop?
+				cout << " {4} " << archive.pop.size() << " " << archive.NP;
+				do {
+					int del = rand() % archive.pop.size();
 					archive.pop.erase(archive.pop.begin()+del);	
-					tam_arc--;			
+					tam_arc--;
 				} while (tam_arc > archive.NP);
 			}
 			if (archive.arc_ind_count > archive.NP) 
@@ -915,7 +924,7 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
 	if (counter == 1)
 		flag_LS = true;
 	else
-		flag_LS = false;        
+		flag_LS = false;
 
 	flag_LS = false;
 	if (flag_LS == true){
@@ -949,6 +958,7 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
 			popr_ls = new_point;
 		}
 	}
+	cout << " {5} passou." << endl; 
 }
 
 void aepd_teda(vector<node> &popr, conv &convi, stag &stagi, 
@@ -1075,7 +1085,7 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 				// create new individuo
 				if (new_ind < popsize_teda){
 
-					cout << "-- Outlier LS --" << endl;
+					//cout << "-- Outlier LS --" << endl;
 
 					int nfe_ls = nfe;
 					m = local_search_teda(m, ind, igen, optimum, 
@@ -1124,7 +1134,7 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 				//node new_best_ind = ls_process(ind, igen, teda[c].best_teda);
 			}
 			nfe = nfe + teda.size();
-			cout << "-- Randomico --" << endl;
+			//cout << "-- Randomico --" << endl;
 		}
 	}
 
