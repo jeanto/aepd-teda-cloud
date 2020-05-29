@@ -270,19 +270,14 @@ int main(int argc, char** argv) {
 						<< "] terminou. Vou avisar a todos... " << endl;
 				
 				for (int i = 1; i < size; i++){
-					if (i != rank_source){
-						MPI_Send(&exit_signal, 1, MPI_INT, i, 3, MPI_COMM_WORLD);						
-					}
+					MPI_Send(&exit_signal, 1, MPI_INT, i, 3, MPI_COMM_WORLD);						
 				}
-				
-				//MPI_Ibcast(&exit_signal, 1, MPI_INT, MASTER, MPI_COMM_WORLD, &found_request);		
-				//MPI_Wait(&found_request, MPI_STATUS_IGNORE);
 				break;
 			}
 			else{
 				MPI_Recv(ind.data(), DIM, MPI_DOUBLE, rank_source, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
-				cout 	<< "[" << rank << "] solicitou. " << endl;
+				cout 	<< "[" << rank_source << "] solicitou. " << endl;
 
 				// TEDA Cloud
 				node indk;
@@ -460,7 +455,6 @@ int main(int argc, char** argv) {
 						exit_signal = -10;
 						MPI_Cancel(&myRequestNumInds);
 						MPI_Request_free(&myRequestNumInds);	
-						cout << "[" << rank << "] {1} entrou no ibcast";
 						break;
 					}
 
@@ -492,7 +486,6 @@ int main(int argc, char** argv) {
 							exit_signal = -10;
 							MPI_Cancel(&myRequestNewInd);
 							MPI_Request_free(&myRequestNewInd);
-							cout << "[" << rank << "] {2} entrou no ibcast";
 							break;
 						}
 
@@ -502,7 +495,6 @@ int main(int argc, char** argv) {
 					if (exit_signal < 0) break;
 					
 					migrated_inds[ni].x = ind_mig;
-
 					flag_recv = 0;
 				}
 
