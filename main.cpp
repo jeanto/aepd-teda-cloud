@@ -118,7 +118,7 @@ int main(int argc, char** argv) {
 	NUM_NFE  	= DIM * 1e+4;
 	SUBPOP_SIZE = 18 * DIM;
 	UN 			= SUBPOP_SIZE;
-	maxevals 	= 1e2; // redefinir dinamicamente
+	maxevals 	= 1e1; // redefinir dinamicamente
 	int window  = 10;
 
 	double perc_mig_ini	= 0.1;	// 10% of first generations are
@@ -235,6 +235,7 @@ int main(int argc, char** argv) {
 	vector<tedacloud> teda;
     int k_teda = 0;
 	int found  = 0;
+	int migs   = 0; // if already migrated?
 
 	while(true){
 		// end lock file config
@@ -259,6 +260,7 @@ int main(int argc, char** argv) {
 		//	it generates a new individual to the island
 		if (rank == MASTER){
 			int tag_irecv;
+			int nfe_island;
 			MPI_Status myStatus;
 			MPI_Irecv(&rank_source, 1, MPI_INT, MPI_ANY_TAG, 
 					MPI_ANY_TAG, MPI_COMM_WORLD, &myRequest);
@@ -277,8 +279,9 @@ int main(int argc, char** argv) {
 				break;
 			}
 			else{
-				
+				migs = 1;
 				MPI_Recv(ind.data(), DIM, MPI_DOUBLE, rank_source, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+				MPI_Recv(&nfe_island, 1, MPI_INT, rank_source, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
 				cout 	<< "[" << rank_source << "] solicitou. " << endl;
 
@@ -317,6 +320,9 @@ int main(int argc, char** argv) {
 					}
 					break;
 				}
+			}
+			if (migs == 1){
+				maxevals = round((((100 - 10) / NUM_NFE) * nfe_island) + 10);
 			}
 		}
 		else{
@@ -419,6 +425,7 @@ int main(int argc, char** argv) {
 				int tag_send  = 1;
 				MPI_Isend(&rank, 1, MPI_INT, MASTER, tag_send, MPI_COMM_WORLD, &myRequestSend[0]);
 				MPI_Isend(bestr.x.data(), DIM, MPI_DOUBLE, MASTER, tag_send, MPI_COMM_WORLD, &myRequestSend[1]);
+				MPI_Isend(&nfe, 1, MPI_INT, MASTER, tag_send, MPI_COMM_WORLD, &myRequestSend[2]);
 				//MPI_Isend(conv_stats.m.data(), DIM, MPI_DOUBLE, MASTER, tag_send, MPI_COMM_WORLD, &myRequestSend[1]);
 				
 				flag_send = 0;
@@ -432,7 +439,7 @@ int main(int argc, char** argv) {
 						break;
 					}
 
-					MPI_Testall(2, myRequestSend, &flag_send, MPI_STATUS_IGNORE);
+					MPI_Testall(3, myRequestSend, &flag_send, MPI_STATUS_IGNORE);
 				}while (flag_send != 1);
 
 				// some island terminated
