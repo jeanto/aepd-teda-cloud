@@ -65,17 +65,17 @@ double max_pop_size;
 double optimum;
 
 // For local search
-double GenMaxSelected 	  = 250; 
-double GenMaxSelectedTeda = 50;
-int popsize_teda 		= 5;
-double G_Max 			= 0;
-int popsize_LS 			= 10;
+double GenMaxSelected 	  	= 250; 
+double GenMaxSelectedTeda 	= 5;
+int popsize_teda 			= 5;
+double G_Max 				= 0;
+int popsize_LS 				= 10;
 int maxevals;
 
 // For teda
 const double r0 		= 0.001;
 
-void shade(vector<node> &popr, vector<node> &popr_ls, 
+void shade(int rank, vector<node> &popr, vector<node> &popr_ls, 
 			vector<node> &children, node_arc &archive, node &bestr, node &bestls, 
 			int &nfe, int p_num, vector<double> &memory_cr, vector<double> &memory_sf,
 			vector<double> &memory_freq, int &memory_pos, int &gg, int igen, 
@@ -95,7 +95,8 @@ int create_new_individuo(int rank, int rank_source,
 						vector<double> ind, vector<double> pd);
 
 vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
-								int igen, int optimum, int &nfe, int maxevals);
+								int igen, double optimum, int &nfe, 
+								int maxevals, int window);
 
 //vector<double> teda_cloud_by_j(vector<tedacloud> &teda, node ind, int &k);
 
@@ -117,7 +118,8 @@ int main(int argc, char** argv) {
 	NUM_NFE  	= DIM * 1e+4;
 	SUBPOP_SIZE = 18 * DIM;
 	UN 			= SUBPOP_SIZE;
-	maxevals 	= 1e2;
+	maxevals 	= 1e2; // redefinir dinamicamente
+	int window  = 10;
 
 	double perc_mig_ini	= 0.1;	// 10% of first generations are
 								// 	migrated to build the teda cloud
@@ -149,7 +151,7 @@ int main(int argc, char** argv) {
 	int counter 		= 0;
 
 	// optimum fitness
-	optimum = FUN * 100; 
+	optimum = FUN * 100.0; 
 
 	// the contents of M_f and M_cr are all initialiezed 0.5
 	vector<double> memory_sf(memory_size, 0.5);
@@ -275,6 +277,7 @@ int main(int argc, char** argv) {
 				break;
 			}
 			else{
+				
 				MPI_Recv(ind.data(), DIM, MPI_DOUBLE, rank_source, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
 				cout 	<< "[" << rank_source << "] solicitou. " << endl;
@@ -285,7 +288,8 @@ int main(int argc, char** argv) {
 				vector<node> new_inds;
 
 				new_inds = teda_cloud_all(teda, indk, k_teda, igen, 
-											optimum, nfe, maxevals);
+											optimum, nfe, maxevals,
+											window);
 
 				sort(new_inds.begin(), new_inds.end(), compare);
 				int num_inds = new_inds.size();
@@ -311,9 +315,6 @@ int main(int argc, char** argv) {
 					for (int i = 1; i < size; i++){
 						MPI_Send(&exit_signal, 1, MPI_INT, i, 3, MPI_COMM_WORLD);						
 					}
-
-					//MPI_Ibcast(&exit_signal, 1, MPI_INT, MASTER, MPI_COMM_WORLD, &found_request);		
-					//MPI_Wait(&found_request, MPI_STATUS_IGNORE);
 					break;
 				}
 			}
@@ -365,7 +366,7 @@ int main(int argc, char** argv) {
 			double best_costp 	= bestr.fitness;
 			p_num 				= round(SUBPOP_SIZE * p_best_rate);
 
-        	shade(popr, popr_ls, children, archive, 
+        	shade(rank ,popr, popr_ls, children, archive, 
 				bestr, bestls, nfe, p_num, memory_cr, memory_sf, 
 				memory_freq, memory_pos, gg, igen, G_Max, counter);
 
@@ -463,7 +464,7 @@ int main(int argc, char** argv) {
 
 				if (exit_signal < 0) break;
 
-				cout << "[" << rank << "] Inds: " << number_of_inds << endl;
+				//cout << "[" << rank << "] Inds: " << number_of_inds << endl;
 
 				flag_recv = 0;
 				vector<node> migrated_inds;
@@ -507,19 +508,19 @@ int main(int argc, char** argv) {
 				int has_improved = 0;
 			
 				for (int ni = 0; ni < number_of_inds; ni++){
-					migrated_inds[ni].node_id = popr.size() + 1;
 					migrated_inds[ni].fitness = opt_func_cec2014(migrated_inds[ni].x);
 
 					//cout 	<< "[" << rank << "] " << number_of_inds 
 					//		<< " - " << popr.size() << endl;
 
 					if (SUBPOP_SIZE < (DIM * 18)){
+						migrated_inds[ni].node_id = popr.size() + 1;
 						popr.push_back(migrated_inds[ni]);
 					}
 					else{
 						int id = rand() % popr.size();
 
-						while (bestr.node_id != popr[id].node_id) {
+						while (bestr.node_id == popr[id].node_id) {
 							id = rand() % popr.size();
 						}
 						// replace and check if new ind is better than best
@@ -614,7 +615,7 @@ bool compare_by_dist(node a, node b) {
     return a.distance < b.distance;
 } 
 
-void shade(vector<node> &popr, vector<node> &popr_ls, 
+void shade(int rank, vector<node> &popr, vector<node> &popr_ls, 
 			vector<node> &children, node_arc &archive, node &bestr, node &bestls, 
 			int &nfe, int p_num, vector<double> &memory_cr, vector<double> &memory_sf, 
 			vector<double> &memory_freq, int &memory_pos, int &gg, int igen, 
@@ -652,13 +653,19 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
       	}
 
       	// generate F_i and repair its value
-      	do {	
+		int cont1 = 0;
+      	do {
+			cont1++;
 			pop_sf[target] = cauchy_g(mu_sf, 0.1);
+			if (cont1 > 1000) cout << "{1} " << cont1;
       	} while (pop_sf[target] <= 0);
 
       	// generate F_i and repair its value
+		int cont2 = 0;
       	do {	
+			cont2++;
 			pop_freq[target] = cauchy_g(mu_freq, 0.1);
+			if (cont2 > 1000) cout << "{2} " << cont2;
       	} while (pop_freq[target] <= 0);		
 
       	if (pop_sf[target] > 1) pop_sf[target] = 1;
@@ -898,8 +905,11 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
 			
 			if (archive.pop.size() > archive.NP){
 				int tam_arc = archive.pop.size();
-				cout << " {4} " << archive.pop.size() << " " << archive.NP;
+				//cout << " {4} " << archive.pop.size() << " " << archive.NP;
+				int cont5 = 0;
 				do {
+					cont5++;
+					if (cont5 > 1000) cout << "{5} " << cont5;
 					int del = rand() % archive.pop.size();
 					archive.pop.erase(archive.pop.begin()+del);	
 					tam_arc--;
@@ -954,7 +964,7 @@ void shade(vector<node> &popr, vector<node> &popr_ls,
 			popr_ls = new_point;
 		}
 	}
-	//cout << " {5} passou." << endl; 
+	//cout << "[" << rank << "] {6} passou." << endl; 
 }
 
 void aepd_teda(vector<node> &popr, conv &convi, stag &stagi, 
@@ -969,15 +979,6 @@ void aepd_teda(vector<node> &popr, conv &convi, stag &stagi,
 
 	// rediversify with migration
 	is_rediversify(convi, stagi, enhani, nfe);
-
-/* 	for (int k = 0; k < DIM; k++){
-		cout << convi.gamma[k] << " "; 
-	}
-	
-	for (int k = 0; k < DIM; k++){
-		cout << stagi.gamma[k] << " ";
-	}
-	cout << "[" << enhani.zg << "]" << endl; */
 }
 
 void check_finish(int &GEN, int &exit_signal, int nfe, node bestr){
@@ -990,8 +991,11 @@ void check_finish(int &GEN, int &exit_signal, int nfe, node bestr){
 	}
 }
 
+// REMODELAR ESSA FUNCAO DE MODO QUE AS 
+//		CLOUDS ACOMPANHEM A EVOLUCAO DAS ILHAS
 vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
-								int igen, int optimum, int &nfe, int maxevals){
+								int igen, double optimum, int &nfe, 
+								int maxevals, int window){
 
 	bool flag 		= false;
 	double ecc_norm = 0;
@@ -999,7 +1003,7 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 	k_teda++;
 	if (k_teda == 1) {
 
-		node ind_improved = mts_ls1(ind, 1e3);
+		node ind_improved = mts_ls1(ind, maxevals);
 
 		tedacloud cloud0;
 
@@ -1018,8 +1022,9 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 		int n 		= teda.size();
 		int new_ind = 0;
 
-		for(int c = 0; c < n; c++){
+		for(int c = n-1; c >= 0; c--){
 			tedacloud m = teda[c];
+			cout << "Cloud: " << c << " tem " << m.xk.size() << " inds.";
 
 			double sk = m.sk + 1;
 
@@ -1069,7 +1074,13 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 				m.sk++;
 				m.uk = uk;
 				m.vk = vk;
-				m.xk.push_back(ind);
+				if (m.xk.size() < window)
+					m.xk.push_back(ind);
+				else{
+					vector<node> xks(m.xk.begin() + 1, m.xk.end());
+					xks.push_back(ind);
+					m.xk = xks;
+				}
 				//cout << "Inds: " << m.xk.size() << endl;
 
 				teda[c] = m;
@@ -1079,19 +1090,38 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 			}
 			else{
 				// create new individuo
+				string method_ls;
 				if (new_ind < popsize_teda){
 
 					//cout << "-- Outlier LS --" << endl;
 
-					int nfe_ls = nfe;
-					m = local_search_teda(m, ind, igen, optimum, 
-										nfe_ls, maxevals, "mts");
+					// EH PRECISO ATUALIZAR A MEDIA 
+					//     E O DESVIO PADRAO DA CLOUD
 
-					teda_migra.push_back(m.best_teda);
+					int nfe_ls = nfe;
+					if (new_ind % 2 == 0) method_ls = "mts";
+					else method_ls = "gaussian";
+					m = local_search_teda(m, ind, igen, optimum, 
+										nfe_ls, maxevals, method_ls);
+
+					node ind_improved = mts_ls1(ind, maxevals);
+
+					if (m.best_teda.fitness < ind_improved.fitness){
+						teda_migra.push_back(m.best_teda);
+					}
+					else{
+						int id 		= rand() % m.xk.size();
+						m.xk[id]  	= ind_improved;
+						m.best_teda = ind_improved;
+						teda_migra.push_back(ind_improved);
+					}
 					teda[c] = m;
 
 					nfe = nfe_ls;
 					new_ind++;
+
+					if (nfe > NUM_NFE)
+						break;
 				}          
 			}
 		}
@@ -1112,8 +1142,8 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 		// individuo is not outlier in any cloud
 		if (new_ind == 0){
 
-			node ind_improved = mts_ls1(ind, 1e3);
-			teda_migra.push_back(ind_improved);
+			//node ind_improved = mts_ls1(ind, maxevals);
+			//teda_migra.push_back(ind_improved);
 
 			for(int c = 0; c < teda.size(); c++){
 				evaluatePopulation(teda[c].xk, optimum);

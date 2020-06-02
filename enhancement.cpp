@@ -173,8 +173,8 @@ bool compare_ls(node a, node b) {
 } 
 
 tedacloud local_search_teda(tedacloud teda, node ind, int igen, 
-						int optimum, int &nfe, int maxevals, 
-						std::string method = "mts"){
+						double optimum, int &nfe, int maxevals, 
+						std::string method){
 
 	int popsize_ls_teda = popsize_teda; 
 	evaluatePopulation(teda.xk, optimum);
@@ -202,6 +202,19 @@ tedacloud local_search_teda(tedacloud teda, node ind, int igen,
 		for (int gen_LS = 0; gen_LS < GenMaxSelectedTeda; gen_LS++){
 			for (int i = 0; i < popsize_ls_teda; i++){
 				popr_ls_teda[i] = ls_process(popr_ls_teda[i], igen, teda.best_teda);
+				nfe = nfe + 1;
+
+				if (popr_ls_teda[i].fitness < teda.best_teda.fitness){
+					teda.best_teda = popr_ls_teda[i];
+					//teda.xk[r_index] = new_point[i];
+				}
+				else{
+					popr_ls_teda[i] = mts_ls1(popr_ls_teda[i], maxevals);
+					nfe = nfe + maxevals;
+					if (popr_ls_teda[i].fitness < teda.best_teda.fitness){
+						teda.best_teda = popr_ls_teda[i];
+					}					
+				}
 			}
 			evaluatePopulation(popr_ls_teda, optimum);
 		}
@@ -209,38 +222,21 @@ tedacloud local_search_teda(tedacloud teda, node ind, int igen,
 	else if (method.compare("mts") == 0){
 		for (int i = 0; i < popsize_ls_teda; i++){
 			popr_ls_teda[i] = mts_ls1(popr_ls_teda[i], maxevals);
-
+			nfe = nfe + maxevals;
 			if (popr_ls_teda[i].fitness < teda.best_teda.fitness){
 				teda.best_teda = popr_ls_teda[i];
+			}
+			else{
+				popr_ls_teda[i] = ls_process(popr_ls_teda[i], igen, teda.best_teda);
+				if (popr_ls_teda[i].fitness < teda.best_teda.fitness){
+					teda.best_teda = popr_ls_teda[i];
+				}
+				nfe = nfe + 1;		
 			}
 		}
 	}
 
-	for (int i = 0; i < popsize_ls_teda; i++){
-		//int r_index = rand() % teda.xk.size();
-
-		// Update those 10 random individuals from pop L-SHADE
-		//if (new_point[i].fitness < teda.xk[r_index].fitness){
-		//if (popr_ls_teda[i].fitness < teda.xk[i].fitness){
-			//teda.xk[i] = popr_ls_teda[i];
-			//teda.xk.push_back(new_point[i]);
-			//teda.xk[r_index] = new_point[i];
-		//} 
-		// Update best individual L-SHADE
-		if (popr_ls_teda[i].fitness < teda.best_teda.fitness){
-			teda.best_teda = popr_ls_teda[i];
-			//teda.xk[r_index] = new_point[i];
-		}
-		nfe = nfe + 1;
-	}
-
 	teda.xk = popr_ls_teda;
-
-	//sort(new_point.begin(), new_point.end(), compare_ls);
-	// first point is the best
-	//best_ls 	 = new_point[0];
-	//popr_ls_teda = new_point;
-
 	return teda;
 }
 

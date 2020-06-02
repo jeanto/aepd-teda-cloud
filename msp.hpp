@@ -151,7 +151,7 @@ double newj(double mjg, int nfe);
 
 // LocalSearch
 tedacloud local_search_teda(tedacloud teda, node ind, int igen, 
-						int optimum, int &nfe, int maxevals, 
+						double optimum, int &nfe, int maxevals, 
 						std::string method);
 
 LSresult mts_ls1_improve_dim(std::vector<double> sol, 

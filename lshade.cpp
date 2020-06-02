@@ -52,11 +52,17 @@ node operateCurrentToPBest1BinWithArchive(vector<node> pop,
 
     int r1, r2;
     
+    int cont3 = 0;
     do {
+        cont3++;
         r1 = rand() % pop.size();
+        if (cont3 > 1000) cout << "{3} " << cont3;
     } while (r1 == target);
+    int cont4 = 0;
     do {
+        cont4++;
         r2 = rand() % (pop.size() + archive.arc_ind_count);
+        if (cont4 > 1000) cout << "{4} " << cont4;
     } while ((r2 == target) || (r2 == r1));
 
     int random_variable = rand() % DIM;
