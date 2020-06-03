@@ -97,6 +97,7 @@ int create_new_individuo(int rank, int rank_source,
 vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 								int igen, double optimum, int &nfe, 
 								int maxevals, int window);
+tedacloud update_cloud(tedacloud cloud);
 
 //vector<double> teda_cloud_by_j(vector<tedacloud> &teda, node ind, int &k);
 
@@ -1088,8 +1089,6 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 					xks.push_back(ind);
 					m.xk = xks;
 				}
-				//cout << "Inds: " << m.xk.size() << endl;
-
 				teda[c] = m;
 
 				// not create new cloud
@@ -1110,6 +1109,9 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 					else method_ls = "gaussian";
 					m = local_search_teda(m, ind, igen, optimum, 
 										nfe_ls, maxevals, method_ls);
+
+					// update mean and variance cloud
+					m = update_cloud(m);
 
 					node ind_improved = mts_ls1(ind, maxevals);
 
@@ -1133,8 +1135,7 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 			}
 		}
 
-		if (flag)
-		{
+		if (flag) {
 			tedacloud cloudi;
 			cloudi.id = n;
 			// create cloud 1 and add x1
@@ -1174,6 +1175,38 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 	//cout << "[Numero de clouds: " << teda.size() << "]" << endl;
 
 	return teda_migra;
+}
+
+tedacloud update_cloud(tedacloud cloud){
+
+	int k = 1;
+	for (int i = 0; i < cloud.xk.size(); i++){
+		if (k == 1) {
+			cloud.vk = 0.0;
+			cloud.uk = cloud.xk[i].x;
+			cloud.sk = 1;
+			k++;
+		}
+		else{
+			double sk = cloud.sk + 1;
+
+			// update mean of cloud 1
+			vector<double> uk;
+			uk.resize(DIM);
+			for (int j = 0; j < DIM; j++){
+				uk[j] = (((sk - 1.0) / sk) * cloud.uk[j]) + (cloud.xk[i].x[j]/sk);
+			}
+
+			// update variance of cloud 1
+			double dist = distance(cloud.xk[i].x, uk);
+			double vk 	= (((sk - 1.0) / sk) * cloud.vk) + ((1.0 / (sk - 1.0)) * dist);    
+			cloud.sk++;
+			cloud.uk = uk;
+			cloud.vk = vk;
+			k++;
+		}
+	}
+	return cloud;
 }
 
 int create_new_individuo(int rank, int rank_source, vector<double> ind, vector<double> pd){

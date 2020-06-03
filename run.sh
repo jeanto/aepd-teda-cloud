@@ -1,8 +1,8 @@
 #!/bin/bash
 
 islands=5
-fun=4
-numruns=1
+fun=2
+numruns=3
 
 for dim in 50; do
 for run in $(seq 1 $numruns); do
