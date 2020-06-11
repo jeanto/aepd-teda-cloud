@@ -309,9 +309,9 @@ node mts_ls1(node ind, unsigned maxevals){
 			improvement[*it] 	= improve;
 
 			if(improve > 0.0){
-				std::cout 	<< "{1}" << current_best.fitness << " > " 
-							<< result.fitness << ", improve ~ " 
-							<< improve << std::endl;
+//				std::cout 	<< "{1}" << current_best.fitness << " > " 
+//							<< result.fitness << ", improve ~ " 
+//							<< improve << std::endl;
 				current_best = result;
 			} else {
 				SR[*it] /= 2.0;
@@ -334,9 +334,9 @@ node mts_ls1(node ind, unsigned maxevals){
     	next_i 			= dim_sorted[next_d];
 
     	if( improve > 0.0 ){
-      		std::cout 	<< "{2}" << current_best.fitness << " > " 
-			  			<< result.fitness << ", improve ~ " 
-						<< improve << std::endl;
+//      		std::cout 	<< "{2}" << current_best.fitness << " > " 
+//			  			<< result.fitness << ", improve ~ " 
+//						<< improve << std::endl;
       		current_best = result;
 
       		if( improvement[i] < improvement[next_i] ){

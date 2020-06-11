@@ -67,7 +67,7 @@ double optimum;
 // For local search
 double GenMaxSelected 	  	= 250; 
 double GenMaxSelectedTeda 	= 5;
-int popsize_teda 			= 5;
+int popsize_teda 			= 2;
 double G_Max 				= 0;
 int popsize_LS 				= 10;
 int maxevals;
@@ -271,8 +271,8 @@ int main(int argc, char** argv) {
 			// send broadcasting to stop because some island got stop criterion
 			if (myStatus.MPI_TAG == 0){
 				int exit_signal = 1;
-				cout 	<< "[" << rank << "]" << " diz que [" << rank_source 
-						<< "] terminou. Vou avisar a todos... " << endl;
+				//cout 	<< "[" << rank << "]" << " diz que [" << rank_source 
+				//		<< "] terminou. Vou avisar a todos... " << endl;
 				
 				for (int i = 1; i < size; i++){
 					MPI_Send(&exit_signal, 1, MPI_INT, i, 3, MPI_COMM_WORLD);						
@@ -284,7 +284,7 @@ int main(int argc, char** argv) {
 				MPI_Recv(ind.data(), DIM, MPI_DOUBLE, rank_source, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 				MPI_Recv(&nfe_island, 1, MPI_INT, rank_source, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
-				cout 	<< "[" << rank_source << "] solicitou. " << endl;
+				//cout 	<< "[" << rank_source << "] solicitou. " << endl;
 
 				// TEDA Cloud
 				node indk;
@@ -308,9 +308,9 @@ int main(int argc, char** argv) {
 							rank_source, tag_send, MPI_COMM_WORLD);
 				}
 
-				cout 	<< "[" << rank << "] criou " << num_inds 
-						<< " individuos para: [" << rank_source 
-						<< "]" << "[" << nfe << "]" << endl;
+				//cout 	<< "[" << rank << "] criou " << num_inds 
+				//		<< " individuos para: [" << rank_source 
+				//		<< "]" << "[" << nfe << "]" << endl;
 			
 				if (nfe >= NUM_NFE){
 					cout 	<< "[" << rank << "] terminei. Vou avisar a todos!" << endl;
@@ -414,14 +414,14 @@ int main(int argc, char** argv) {
 				break;
 			}
 
-			cout 	<< "[" << rank << "][" << nfe 
-					<< "] [" << bestr.fitness << "] [" 
-					<< bestr.fitness - optimum << "] [" 
-					<< enhan_stats.zg << "]" << endl;
+			//cout 	<< "[" << rank << "][" << nfe 
+			//		<< "] [" << bestr.fitness << "] [" 
+			//		<< bestr.fitness - optimum << "] [" 
+			//		<< enhan_stats.zg << "]" << endl;
 
 			if (enhan_stats.zg == 1){
 
-				cout << "[" << rank << "] vou pedir para [" << MASTER << "]" << endl;
+				//cout << "[" << rank << "] vou pedir para [" << MASTER << "]" << endl;
 
 				int tag_send  = 1;
 				MPI_Isend(&rank, 1, MPI_INT, MASTER, tag_send, MPI_COMM_WORLD, &myRequestSend[0]);
@@ -446,8 +446,8 @@ int main(int argc, char** argv) {
 				// some island terminated
 				if (exit_signal < 0) break;
 
-				cout 	<< "[" << rank << "] acabou de pedir para [" 
-						<< MASTER << "]" << endl;
+				//cout 	<< "[" << rank << "] acabou de pedir para [" 
+				//		<< MASTER << "]" << endl;
 
 				int number_of_inds;
 
@@ -511,7 +511,7 @@ int main(int argc, char** argv) {
 				if (exit_signal < 0) break;
 
 				num_mig++;
-				cout << "[" << rank << "] recebeu de [" << MASTER << "]" << endl;
+				//cout << "[" << rank << "] recebeu de [" << MASTER << "]" << endl;
 
 				int has_improved = 0;
 			
@@ -917,7 +917,7 @@ void shade(int rank, vector<node> &popr, vector<node> &popr_ls,
 				int cont5 = 0;
 				do {
 					cont5++;
-					if (cont5 > 1000) cout << "{5} " << cont5;
+					//if (cont5 > 1000) cout << "{5} " << cont5;
 					int del = rand() % archive.pop.size();
 					archive.pop.erase(archive.pop.begin()+del);	
 					tam_arc--;
@@ -1032,7 +1032,7 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 
 		for(int c = n-1; c >= 0; c--){
 			tedacloud m = teda[c];
-			cout << "Cloud: " << c << " tem " << m.xk.size() << " inds.";
+			//cout << "Cloud: " << c << " tem " << m.xk.size() << " inds.";
 
 			double sk = m.sk + 1;
 
@@ -1135,16 +1135,31 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 			}
 		}
 
+		// it is outlier in all clouds
 		if (flag) {
-			tedacloud cloudi;
-			cloudi.id = n;
-			// create cloud 1 and add x1
-			cloudi.vk = 0.0;
-			cloudi.uk = ind.x;
-			cloudi.sk = 1.0;
-			cloudi.xk.push_back(ind);
+			if (n < 10){
+				tedacloud cloudi;
+				cloudi.id = n;
+				// create cloud 1 and add x1
+				cloudi.vk = 0.0;
+				cloudi.uk = ind.x;
+				cloudi.sk = 1.0;
+				cloudi.xk.push_back(ind);
 
-			teda.push_back(cloudi);
+				teda.push_back(cloudi);
+			}
+			else{
+				int idc = rand() % n;
+                                // update mi
+                                if (teda[idc].xk.size() < window)
+                                        teda[idc].xk.push_back(ind);
+                                else{
+                                        vector<node> xks(teda[idc].xk.begin() + 1, teda[idc].xk.end());
+                                        xks.push_back(ind);
+                                        teda[idc].xk = xks;
+                                }
+                                update_cloud(teda[idc]);			
+			}
 		}
 
 		// individuo is not outlier in any cloud
