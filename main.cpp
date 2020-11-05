@@ -109,6 +109,7 @@ void save_1run(int fun, int rank, vector<int> gen_is_migrated,
 				vector<double> best_fit);
 void save_std(int fun, int rank, int GEN, vector<double> std);
 void save_entropy(int fun, int rank, int GEN, double ent);
+void save_nfes(int fun, int rank, int GEN, int nfe, double error);
 double entropy_calc(vector<node> popr);
 
 int main(int argc, char** argv) {
@@ -307,6 +308,7 @@ int main(int argc, char** argv) {
 					MPI_Send(new_inds[ni].x.data(), DIM, MPI_DOUBLE, 
 							rank_source, tag_send, MPI_COMM_WORLD);
 				}
+				//MPI_Send(&nfe, 1, MPI_INT, rank_source, tag_send, MPI_COMM_WORLD);
 
 				//cout 	<< "[" << rank << "] criou " << num_inds 
 				//		<< " individuos para: [" << rank_source 
@@ -388,13 +390,14 @@ int main(int argc, char** argv) {
 				effective_move++;
 				// save generation which improvement has succeeded
 				if (run == 0) is_improved.push_back(GEN);
+				//if (run == 0) is_improved.push_back(nfe);
 			}
 
 			//cout << "[" << rank << "] AEPD-TEDA..." << endl;
 			aepd_teda(popr, conv_stats, stag_stats, enhan_stats, GEN, nfe);
 
 			if (run == 0){
-				save_std(FUN, rank, GEN, conv_stats.std);
+				//save_std(FUN, rank, GEN, conv_stats.std);
 			}
 
 			// check if stop criterion has been reached
@@ -555,11 +558,13 @@ int main(int argc, char** argv) {
 
 				// if first run, save the which generations the migrations happened 
 				if (run == 0) is_migrated.push_back(GEN);
+				//if (run == 0) is_migrated.push_back(nfe);
 			}
 			if (run == 0){
 				// Calculate entropy
-				double ent = entropy_calc(popr);
-				save_entropy(FUN, rank, GEN, ent);
+				//double ent = entropy_calc(popr);
+				//save_entropy(FUN, rank, GEN, ent);
+				save_nfes(FUN, rank, GEN, nfe, bestr.fitness);
 			}
 		}	
 	}
@@ -569,11 +574,11 @@ int main(int argc, char** argv) {
 	const clock_t end_time = clock();
 	if (rank != MASTER){
 		// save infos to first run
-		if (run == 0) save_1run(FUN, rank, is_migrated, is_improved, improve_after_mig, best_fit);
+		//if (run == 0) save_1run(FUN, rank, is_migrated, is_improved, improve_after_mig, best_fit);
 		double timei 		= double(end_time - begin_time) / CLOCKS_PER_SEC;
 		double eff_moves 	= effective_move / GEN;
 		double errori 		= bestr.fitness - optimum; 	// error
-		save_log(FUN, rank, bestr.fitness, errori, timei, num_mig, num_mig_new_inds, eff_moves);
+		//save_log(FUN, rank, bestr.fitness, errori, timei, num_mig, num_mig_new_inds, eff_moves);
 	}
 
 	MPI_Finalize();
@@ -999,8 +1004,7 @@ void check_finish(int &GEN, int &exit_signal, int nfe, node bestr){
 	}
 }
 
-// REMODELAR ESSA FUNCAO DE MODO QUE AS 
-//		CLOUDS ACOMPANHEM A EVOLUCAO DAS ILHAS
+// REMODELAR DE ACORDO COM O ALGORITMO NO TEXTO
 vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 								int igen, double optimum, int &nfe, 
 								int maxevals, int window){
@@ -1150,15 +1154,15 @@ vector<node> teda_cloud_all(vector<tedacloud> &teda, node ind, int &k_teda,
 			}
 			else{
 				int idc = rand() % n;
-                                // update mi
-                                if (teda[idc].xk.size() < window)
-                                        teda[idc].xk.push_back(ind);
-                                else{
-                                        vector<node> xks(teda[idc].xk.begin() + 1, teda[idc].xk.end());
-                                        xks.push_back(ind);
-                                        teda[idc].xk = xks;
-                                }
-                                update_cloud(teda[idc]);			
+				// update mi
+				if (teda[idc].xk.size() < window)
+					teda[idc].xk.push_back(ind);
+				else{
+					vector<node> xks(teda[idc].xk.begin() + 1, teda[idc].xk.end());
+					xks.push_back(ind);
+					teda[idc].xk = xks;
+				}
+				update_cloud(teda[idc]);			
 			}
 		}
 
@@ -1278,8 +1282,8 @@ void save_1run(int fun, int rank, vector<int> gen_is_migrated,
     ofs << DIM << ';' << fun << ';' << rank << '\n' << '\n';
 	for (const auto &e : gen_is_migrated) ofs << e << " ";
 	ofs << '\n' << '\n';
-	for (const auto &e : gen_is_improved) ofs << e << " ";
-	ofs << '\n' << '\n';
+	//for (const auto &e : gen_is_improved) ofs << e << " ";
+	//ofs << '\n' << '\n';
 	for (const auto &e : improve_after_mig) ofs << e << " ";
 	// ofs << '\n' << '\n';
 	// for (const auto &e : best_fit) ofs << e << " ";
@@ -1302,6 +1306,14 @@ void save_entropy(int fun, int rank, int GEN, double ent){
     ofstream ofs(filePath.c_str(), ios_base::out | ios_base::app);
     ofs << DIM << ';' << fun << ';' << ';' << rank << ';' << GEN << ';' 
 		<< ent << '\n';
+    ofs.close();	
+}
+
+void save_nfes(int fun, int rank, int GEN, int nfe, double error){
+	string filePath = "../logs/aepd_teda_cloud/nfes_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
+
+    ofstream ofs(filePath.c_str(), ios_base::out | ios_base::app);
+    ofs << DIM << ';' << fun << ';' << rank << ';' << GEN << ';' << nfe << ';' << error << '\n';
     ofs.close();	
 }
 
