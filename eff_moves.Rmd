@@ -1,0 +1,72 @@
+
+---
+output:
+  html_document:
+    css: style.css
+---
+
+```{r setup, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(cowplot)
+library(ggplot2)
+library(magick)
+library(ggpubr)
+```
+
+# **Effective moves after migration**
+
+The following figures illustrate the effective moves after migration.
+
+## **50D scenario**
+
+
+<details>
+<summary><b>Function:</b> <i>f1</i></summary>
+<p>
+
+```{r f1}
+s3 <- ggdraw() + draw_image("effective_moves_images/f1_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images/f1_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images/f1_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images/f1_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images/f1_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f2</i></summary>
+<p>
+
+```{r f2}
+s3 <- ggdraw() + draw_image("effective_moves_images/f2_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images/f2_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images/f2_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images/f2_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images/f2_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+## 100D scenario
+
+
