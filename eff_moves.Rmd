@@ -11,6 +11,7 @@ library(cowplot)
 library(ggplot2)
 library(magick)
 library(ggpubr)
+
 ```
 
 # **Effective moves after migration**
