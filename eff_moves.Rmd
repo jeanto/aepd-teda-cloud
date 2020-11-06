@@ -26,11 +26,80 @@ The following figures illustrate the effective moves after migration.
 <p>
 
 ```{r f1}
-s3 <- ggdraw() + draw_image("effective_moves_images/f1_aepd_teda_cloud.png", scale = 1)
-s2 <- ggdraw() + draw_image("effective_moves_images/f1_aepd_teda_best.png", scale = 1)
-s1 <- ggdraw() + draw_image("effective_moves_images/f1_aepd_best.png", scale = 1)
-fix <- ggdraw() + draw_image("effective_moves_images/f1_fix.png", scale = 1)
-prob <- ggdraw() + draw_image("effective_moves_images/f1_prob.png", scale = 1)
+s3 <- ggdraw() + draw_image("effective_moves_images50/f1_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f1_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f1_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f1_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f1_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f2</i></summary>
+<p>
+
+```{r f2}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f2_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f2_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f2_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f2_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f2_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f4</i></summary>
+<p>
+
+```{r f4}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f4_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f4_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f4_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f4_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f4_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f5</i></summary>
+<p>
+
+```{r f5}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f5_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f5_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f5_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f5_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f5_prob.png", scale = 1)
 
 ggarrange(s3,s2,s1,fix,prob,
           labels = c("S3", "S2", "S1", "FIX", "PROB"),
@@ -47,15 +116,15 @@ ggarrange(s3,s2,s1,fix,prob,
 
 
 <details>
-<summary><b>Function:</b> <i>f2</i></summary>
+<summary><b>Function:</b> <i>f6</i></summary>
 <p>
 
-```{r f2}
-s3 <- ggdraw() + draw_image("effective_moves_images/f2_aepd_teda_cloud.png", scale = 1)
-s2 <- ggdraw() + draw_image("effective_moves_images/f2_aepd_teda_best.png", scale = 1)
-s1 <- ggdraw() + draw_image("effective_moves_images/f2_aepd_best.png", scale = 1)
-fix <- ggdraw() + draw_image("effective_moves_images/f2_fix.png", scale = 1)
-prob <- ggdraw() + draw_image("effective_moves_images/f2_prob.png", scale = 1)
+```{r f6}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f6_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f6_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f6_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f6_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f6_prob.png", scale = 1)
 
 ggarrange(s3,s2,s1,fix,prob,
           labels = c("S3", "S2", "S1", "FIX", "PROB"),
@@ -68,6 +137,1279 @@ ggarrange(s3,s2,s1,fix,prob,
 </p>
 </details>
 
-## 100D scenario
 
 
+<details>
+<summary><b>Function:</b> <i>f7</i></summary>
+<p>
+
+```{r f7}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f7_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f7_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f7_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f7_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f7_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f8</i></summary>
+<p>
+
+```{r f8}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f8_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f8_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f8_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f8_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f8_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+<details>
+<summary><b>Function:</b> <i>f9</i></summary>
+<p>
+
+```{r f9}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f9_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f9_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f9_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f9_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f9_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f10</i></summary>
+<p>
+
+```{r f10}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f10_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f10_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f10_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f10_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f10_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f11</i></summary>
+<p>
+
+```{r f11}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f11_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f11_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f11_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f11_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f11_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f12</i></summary>
+<p>
+
+```{r f12}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f12_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f12_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f12_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f12_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f12_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f13</i></summary>
+<p>
+
+```{r f13}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f13_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f13_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f13_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f13_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f13_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f14</i></summary>
+<p>
+
+```{r f14}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f14_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f14_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f14_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f14_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f14_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f15</i></summary>
+<p>
+
+```{r f15}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f15_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f15_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f15_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f15_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f15_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f16</i></summary>
+<p>
+
+```{r f16}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f16_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f16_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f16_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f16_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f16_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f17</i></summary>
+<p>
+
+```{r f17}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f17_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f17_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f17_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f17_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f17_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f18</i></summary>
+<p>
+
+```{r f18}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f18_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f18_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f18_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f18_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f18_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f19</i></summary>
+<p>
+
+```{r f19}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f19_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f19_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f19_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f19_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f19_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f20</i></summary>
+<p>
+
+```{r f20}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f20_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f20_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f20_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f20_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f20_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f21</i></summary>
+<p>
+
+```{r f21}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f21_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f21_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f21_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f21_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f21_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f22</i></summary>
+<p>
+
+```{r f22}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f22_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f22_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f22_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f22_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f22_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f23</i></summary>
+<p>
+
+```{r f23}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f23_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f23_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f23_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f23_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f23_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f24</i></summary>
+<p>
+
+```{r f24}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f24_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f24_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f24_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f24_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f24_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f25</i></summary>
+<p>
+
+```{r f25}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f25_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f25_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f25_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f25_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f25_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f26</i></summary>
+<p>
+
+```{r f26}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f26_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f26_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f26_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f26_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f26_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f27</i></summary>
+<p>
+
+```{r f27}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f27_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f27_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f27_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f27_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f27_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f28</i></summary>
+<p>
+
+```{r f28}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f28_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f28_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f28_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f28_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f28_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f29</i></summary>
+<p>
+
+```{r f29}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f29_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f29_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f29_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f29_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f29_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f30</i></summary>
+<p>
+
+```{r f30}
+s3 <- ggdraw() + draw_image("effective_moves_images50/f30_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images50/f30_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images50/f30_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images50/f30_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images50/f30_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+## **100D scenario**
+
+<details>
+<summary><b>Function:</b> <i>f1</i></summary>
+<p>
+
+```{r f1_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f1_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f1_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f1_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f1_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f1_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f2</i></summary>
+<p>
+
+```{r f2_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f2_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f2_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f2_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f2_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f2_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f4</i></summary>
+<p>
+
+```{r f4_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f4_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f4_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f4_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f4_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f4_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f5</i></summary>
+<p>
+
+```{r f5_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f5_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f5_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f5_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f5_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f5_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f6</i></summary>
+<p>
+
+```{r f6_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f6_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f6_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f6_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f6_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f6_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f7</i></summary>
+<p>
+
+```{r f7_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f7_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f7_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f7_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f7_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f7_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f8</i></summary>
+<p>
+
+```{r f8_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f8_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f8_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f8_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f8_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f8_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+<details>
+<summary><b>Function:</b> <i>f9</i></summary>
+<p>
+
+```{r f9_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f9_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f9_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f9_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f9_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f9_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f10</i></summary>
+<p>
+
+```{r f10_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f10_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f10_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f10_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f10_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f10_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f11</i></summary>
+<p>
+
+```{r f11_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f11_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f11_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f11_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f11_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f11_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f12</i></summary>
+<p>
+
+```{r f12_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f12_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f12_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f12_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f12_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f12_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f13</i></summary>
+<p>
+
+```{r f13_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f13_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f13_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f13_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f13_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f13_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f14</i></summary>
+<p>
+
+```{r f14_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f14_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f14_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f14_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f14_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f14_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f15</i></summary>
+<p>
+
+```{r f15_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f15_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f15_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f15_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f15_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f15_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f16</i></summary>
+<p>
+
+```{r f16_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f16_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f16_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f16_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f16_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f16_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f17</i></summary>
+<p>
+
+```{r f17_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f17_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f17_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f17_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f17_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f17_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f18</i></summary>
+<p>
+
+```{r f18_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f18_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f18_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f18_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f18_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f18_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f19</i></summary>
+<p>
+
+```{r f19_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f19_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f19_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f19_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f19_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f19_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f20</i></summary>
+<p>
+
+```{r f20_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f20_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f20_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f20_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f20_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f20_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f21</i></summary>
+<p>
+
+```{r f21_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f21_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f21_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f21_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f21_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f21_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f22</i></summary>
+<p>
+
+```{r f22_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f22_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f22_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f22_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f22_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f22_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f23</i></summary>
+<p>
+
+```{r f23_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f23_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f23_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f23_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f23_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f23_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f24</i></summary>
+<p>
+
+```{r f24_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f24_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f24_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f24_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f24_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f24_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f25</i></summary>
+<p>
+
+```{r f25_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f25_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f25_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f25_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f25_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f25_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f26</i></summary>
+<p>
+
+```{r f26_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f26_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f26_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f26_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f26_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f26_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f27</i></summary>
+<p>
+
+```{r f27_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f27_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f27_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f27_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f27_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f27_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f28</i></summary>
+<p>
+
+```{r f28_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f28_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f28_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f28_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f28_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f28_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f29</i></summary>
+<p>
+
+```{r f29_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f29_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f29_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f29_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f29_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f29_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f30</i></summary>
+<p>
+
+```{r f30_100}
+s3 <- ggdraw() + draw_image("effective_moves_images100/f30_aepd_teda_cloud.png", scale = 1)
+s2 <- ggdraw() + draw_image("effective_moves_images100/f30_aepd_teda_best.png", scale = 1)
+s1 <- ggdraw() + draw_image("effective_moves_images100/f30_aepd_best.png", scale = 1)
+fix <- ggdraw() + draw_image("effective_moves_images100/f30_fix.png", scale = 1)
+prob <- ggdraw() + draw_image("effective_moves_images100/f30_prob.png", scale = 1)
+
+ggarrange(s3,s2,s1,fix,prob,
+          labels = c("S3", "S2", "S1", "FIX", "PROB"),
+          hjust = c(-1, -1),
+          font.label = list(size = 20),
+          ncol = 3, nrow = 2)
+
+```
+
+</p>
+</details>
