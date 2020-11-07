@@ -7,7 +7,7 @@ To compile this project you need to have OpenMPI (version 2.1.+ or later), GCC (
 
 #### 1.2. Building the project
 
-Inside the root directory of the project (`S3/`), run the following commands:
+Inside the root directory of the project (`S1_S2_FIX_PROB/`), run the following commands:
 
 ```
 make
@@ -15,7 +15,7 @@ make
 
 ## 2. Running the project
 
-Inside the `S3/` directory, you can find a shell script `run.sh` that performs the same experiment described in the PhD qualification. To run it, after compiling the project (as described in the previous section) and inside the `S3/` directory, run the following command:
+Inside the `S1_S2_FIX_PROB/` directory, you can find a shell script `run.sh` that performs the same experiment described in the PhD qualification. To run it, after compiling the project (as described in the previous section) and inside the `S1_S2_FIX_PROB/` directory, run the following command:
 
 ```
 ./run 
