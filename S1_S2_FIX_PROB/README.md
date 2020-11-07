@@ -27,14 +27,14 @@ Inside the `S3/` directory, you can find a shell script `run.sh` that performs t
 After build the project, you can specify four paramenters when executing the `run.sh` script. 
 
 ```
-./run $1 $2 $3 $4
+./run $1 $2 $3 $4 $5
 ```  
 
 The complete list of parameters is given below.
 
 
 `$1`  
-Number of islands: this value depends on the number of cores available on your system. One of the islands serve as pool. 
+Number of islands: this value depends on the number of cores available on your system.
 
 `$2`  
 Dimension: number of variables. Valid values are:
@@ -49,14 +49,23 @@ Function: benchmark function to be solved. Valid values are: `1-30`
 `$4`  
 Number of runs: number of times that function is called.
 
+`$5`  
+Migration strategy: Valid values are:
+* `0`: S1 strategy.
+* `1`: S2 strategy.
+* `2`: FIX strategy.
+* `3`: PROB strategy.
+
 If you do not provide any arguments, the default values are set as follows:
 
 ```
-$1 = 5
+$1 = 4
 
 $2 = (50, 100)
 
 $3 = (1, 2, ..., 30)
 
 $4 = 1
+
+$5 = (0,1,2,3)
 ```  
