@@ -1254,7 +1254,7 @@ int create_new_individuo(int rank, int rank_source, vector<double> ind, vector<d
 void save_log(int fun, int rank, double best, double error, double time, 
 				int num_mig, int num_mig_new_inds, double eff_moves){
 
-	string filePath = "../logs/aepd_teda_cloud/log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
+	string filePath = "../../logs/aepd_teda_cloud/log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
 
     ofstream ofs(filePath.c_str(), ios_base::out | ios_base::app);
     ofs << DIM << ';' << fun << ';' << rank << ';' 
@@ -1276,7 +1276,7 @@ void save_log(int fun, int rank, double best, double error, double time,
 void save_1run(int fun, int rank, vector<int> gen_is_migrated, 
 				vector<int> gen_is_improved, vector<int> improve_after_mig,
 				vector<double> best_fit){
-	string filePath = "../logs/aepd_teda_cloud/one_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
+	string filePath = "../../logs/aepd_teda_cloud/one_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
 
 	ofstream ofs(filePath.c_str(), ios_base::out | ios_base::ate);
     ofs << DIM << ';' << fun << ';' << rank << '\n' << '\n';
@@ -1291,7 +1291,7 @@ void save_1run(int fun, int rank, vector<int> gen_is_migrated,
 }
 
 void save_std(int fun, int rank, int GEN, vector<double> std){
-	string filePath = "../logs/aepd_teda_cloud/std_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
+	string filePath = "../../logs/aepd_teda_cloud/std_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
 	ofstream ofs(filePath.c_str(), ios_base::out | ios_base::app);
     ofs << DIM << ';' << fun << ';' << rank << '\n' << '\n';
 	ofs << GEN << " ";
@@ -1301,7 +1301,7 @@ void save_std(int fun, int rank, int GEN, vector<double> std){
 }
 
 void save_entropy(int fun, int rank, int GEN, double ent){
-	string filePath = "../logs/aepd_teda_cloud/entropy_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
+	string filePath = "../../logs/aepd_teda_cloud/entropy_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
 
     ofstream ofs(filePath.c_str(), ios_base::out | ios_base::app);
     ofs << DIM << ';' << fun << ';' << ';' << rank << ';' << GEN << ';' 
@@ -1310,7 +1310,7 @@ void save_entropy(int fun, int rank, int GEN, double ent){
 }
 
 void save_nfes(int fun, int rank, int GEN, int nfe, double error){
-	string filePath = "../logs/aepd_teda_cloud/nfes_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
+	string filePath = "../../logs/aepd_teda_cloud/nfes_log_" + to_string(DIM) + "_" + to_string(fun) + "_" + to_string(rank) + ".csv";
 
     ofstream ofs(filePath.c_str(), ios_base::out | ios_base::app);
     ofs << DIM << ';' << fun << ';' << rank << ';' << GEN << ';' << nfe << ';' << error << '\n';
