@@ -1,0 +1,784 @@
+---
+output:
+  html_document:
+    css: style.css
+---
+
+```{r setup, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(cowplot)
+library(ggplot2)
+library(magick)
+library(ggpubr)
+
+```
+
+# **Average error**
+
+Figures illustrate the Boxplots and Kruskal–Wallis test results for different strategies for average error values.
+
+## **50D scenario**
+
+
+<details>
+<summary><b>Function:</b> <i>f1</i></summary>
+<p>
+
+```Standard error of all strategies equal to or very close to zero.```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f2</i></summary>
+<p>
+
+```Standard error of all strategies equal to or very close to zero.```
+
+</p>
+</details>
+
+<details>
+<summary><b>Function:</b> <i>f3</i></summary>
+<p>
+
+```Standard error of all strategies equal to or very close to zero.```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f4</i></summary>
+<p>
+
+```{r f4}
+ggdraw() + draw_image("error_images_50/f4.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f5</i></summary>
+<p>
+
+```{r f5}
+ggdraw() + draw_image("error_images_50/f5.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f6</i></summary>
+<p>
+
+```{r f6}
+ggdraw() + draw_image("error_images_50/f6.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f7</i></summary>
+<p>
+
+```Standard error of all strategies equal to or very close to zero.```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f8</i></summary>
+<p>
+
+```{r f8}
+ggdraw() + draw_image("error_images_50/f8.png", scale = 1)
+```
+
+</p>
+</details>
+
+<details>
+<summary><b>Function:</b> <i>f9</i></summary>
+<p>
+
+```{r f9}
+ggdraw() + draw_image("error_images_50/f9.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f10</i></summary>
+<p>
+
+```{r f10}
+ggdraw() + draw_image("error_images_50/f10.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f11</i></summary>
+<p>
+
+```{r f11}
+ggdraw() + draw_image("error_images_50/f11.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f12</i></summary>
+<p>
+
+```{r f12}
+ggdraw() + draw_image("error_images_50/f12.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f13</i></summary>
+<p>
+
+```{r f13}
+ggdraw() + draw_image("error_images_50/f13.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f14</i></summary>
+<p>
+
+```{r f14}
+ggdraw() + draw_image("error_images_50/f14.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f15</i></summary>
+<p>
+
+```{r f15}
+ggdraw() + draw_image("error_images_50/f15.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f16</i></summary>
+<p>
+
+```{r f16}
+ggdraw() + draw_image("error_images_50/f16.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f17</i></summary>
+<p>
+
+```{r f17}
+ggdraw() + draw_image("error_images_50/f17.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f18</i></summary>
+<p>
+
+```{r f18}
+ggdraw() + draw_image("error_images_50/f18.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f19</i></summary>
+<p>
+
+```{r f19}
+ggdraw() + draw_image("error_images_50/f19.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f20</i></summary>
+<p>
+
+```{r f20}
+ggdraw() + draw_image("error_images_50/f20.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f21</i></summary>
+<p>
+
+```{r f21}
+ggdraw() + draw_image("error_images_50/f21.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f22</i></summary>
+<p>
+
+```{r f22}
+ggdraw() + draw_image("error_images_50/f22.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f23</i></summary>
+<p>
+
+```Standard error of all strategies equal to or very close to zero.```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f24</i></summary>
+<p>
+
+```{r f24}
+ggdraw() + draw_image("error_images_50/f24.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f25</i></summary>
+<p>
+
+```{r f25}
+ggdraw() + draw_image("error_images_50/f25.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f26</i></summary>
+<p>
+
+```{r f26}
+ggdraw() + draw_image("error_images_50/f26.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f27</i></summary>
+<p>
+
+```{r f27}
+ggdraw() + draw_image("error_images_50/f27.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f28</i></summary>
+<p>
+
+```{r f28}
+ggdraw() + draw_image("error_images_50/f28.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f29</i></summary>
+<p>
+
+```{r f29}
+ggdraw() + draw_image("error_images_50/f29.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f30</i></summary>
+<p>
+
+```{r f30}
+ggdraw() + draw_image("error_images_50/f30.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+## **100D scenario**
+
+<details>
+<summary><b>Function:</b> <i>f1</i></summary>
+<p>
+
+```{r f1_100}
+ggdraw() + draw_image("error_images_100/f1.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f2</i></summary>
+<p>
+
+```Standard error of all strategies equal to or very close to zero.```
+
+</p>
+</details>
+
+<details>
+<summary><b>Function:</b> <i>f3</i></summary>
+<p>
+
+```Standard error of all strategies equal to or very close to zero.```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f4</i></summary>
+<p>
+
+```{r f4_100}
+ggdraw() + draw_image("error_images_100/f4.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f5</i></summary>
+<p>
+
+```{r f5_100}
+ggdraw() + draw_image("error_images_100/f5.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f6</i></summary>
+<p>
+
+```{r f6_100}
+ggdraw() + draw_image("error_images_100/f6.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f7</i></summary>
+<p>
+
+```{r f7_100}
+ggdraw() + draw_image("error_images_100/f7.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f8</i></summary>
+<p>
+
+```{r f8_100}
+ggdraw() + draw_image("error_images_100/f8.png", scale = 1)
+```
+
+</p>
+</details>
+
+<details>
+<summary><b>Function:</b> <i>f9</i></summary>
+<p>
+
+```{r f9_100}
+ggdraw() + draw_image("error_images_100/f9.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f10</i></summary>
+<p>
+
+```{r f10_100}
+ggdraw() + draw_image("error_images_100/f10.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f11</i></summary>
+<p>
+
+```{r f11_100}
+ggdraw() + draw_image("error_images_100/f11.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f12</i></summary>
+<p>
+
+```{r f12_100}
+ggdraw() + draw_image("error_images_100/f12.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f13</i></summary>
+<p>
+
+```{r f13_100}
+ggdraw() + draw_image("error_images_100/f13.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f14</i></summary>
+<p>
+
+```{r f14_100}
+ggdraw() + draw_image("error_images_100/f14.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f15</i></summary>
+<p>
+
+```{r f15_100}
+ggdraw() + draw_image("error_images_100/f15.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f16</i></summary>
+<p>
+
+```{r f16_100}
+ggdraw() + draw_image("error_images_100/f16.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f17</i></summary>
+<p>
+
+```{r f17_100}
+ggdraw() + draw_image("error_images_100/f17.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f18</i></summary>
+<p>
+
+```{r f18_100}
+ggdraw() + draw_image("error_images_100/f18.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f19</i></summary>
+<p>
+
+```{r f19_100}
+ggdraw() + draw_image("error_images_100/f19.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f20</i></summary>
+<p>
+
+```{r f20_100}
+ggdraw() + draw_image("error_images_100/f20.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f21</i></summary>
+<p>
+
+```{r f21_100}
+ggdraw() + draw_image("error_images_100/f21.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f22</i></summary>
+<p>
+
+```{r f22_100}
+ggdraw() + draw_image("error_images_100/f22.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f23</i></summary>
+<p>
+
+```{r f23_100}
+ggdraw() + draw_image("error_images_100/f23.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f24</i></summary>
+<p>
+
+```{r f24_100}
+ggdraw() + draw_image("error_images_100/f24.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f25</i></summary>
+<p>
+
+```{r f25_100}
+ggdraw() + draw_image("error_images_100/f25.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+
+<details>
+<summary><b>Function:</b> <i>f26</i></summary>
+<p>
+
+```{r f26_100}
+ggdraw() + draw_image("error_images_100/f26.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+<details>
+<summary><b>Function:</b> <i>f27</i></summary>
+<p>
+
+```{r f27_100}
+ggdraw() + draw_image("error_images_100/f27.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f28</i></summary>
+<p>
+
+```{r f28_100}
+ggdraw() + draw_image("error_images_100/f28.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f29</i></summary>
+<p>
+
+```{r f29_100}
+ggdraw() + draw_image("error_images_100/f29.png", scale = 1)
+```
+
+</p>
+</details>
+
+
+
+<details>
+<summary><b>Function:</b> <i>f30</i></summary>
+<p>
+
+```{r f30_100}
+ggdraw() + draw_image("error_images_100/f30.png", scale = 1)
+```
+
+</p>
+</details>

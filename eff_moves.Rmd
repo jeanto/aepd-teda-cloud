@@ -68,6 +68,16 @@ ggarrange(s3,s2,s1,fix,prob,
 
 
 <details>
+<summary><b>Function:</b> <i>f3</i></summary>
+<p>
+
+```There were no migrations in this function.```
+
+</p>
+</details>
+
+
+<details>
 <summary><b>Function:</b> <i>f4</i></summary>
 <p>
 
@@ -761,6 +771,15 @@ ggarrange(s3,s2,s1,fix,prob,
           ncol = 3, nrow = 2)
 
 ```
+
+</p>
+</details>
+
+<details>
+<summary><b>Function:</b> <i>f3</i></summary>
+<p>
+
+```There were no migrations in this function.```
 
 </p>
 </details>
