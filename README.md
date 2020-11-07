@@ -12,7 +12,7 @@
 
 This repository contains the source code and supplementary files of Jean's PhD qualification entitled "New Migration Strategies for Distributed Evolutionary Algorithms".
 
-All methods were coded in C++/[Open MPI](https://www.open-mpi.org/){target="_blank"}. The project was developed using [Visual Code](https://code.visualstudio.com/){:target="_blank"} and GNU Compiller Collection ([GCC](https://gcc.gnu.org/){:target="_blank"}, version 7.5.0) on a Linux machine running Ubuntu 18.04 (64-bits). The content of this repository is available under the MIT license.
+All methods were coded in C++/[Open MPI](https://www.open-mpi.org/ target="_blank). The project was developed using [Visual Code](https://code.visualstudio.com/){:target="_blank"} and GNU Compiller Collection ([GCC](https://gcc.gnu.org/){:target="_blank"}, version 7.5.0) on a Linux machine running Ubuntu 18.04 (64-bits). The content of this repository is available under the MIT license.
 
 ## 2. Source Codes
 
