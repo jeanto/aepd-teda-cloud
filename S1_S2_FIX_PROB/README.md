@@ -69,3 +69,18 @@ $4 = 1
 
 $5 = (0,1,2,3)
 ```  
+
+
+## 4. Strategies description
+
+### S1
+
+The first strategy is the most straightforward. Figure below illustrates this approach. 
+
+<object data="s1.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="s1.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="s1.pdf">Figure</a>.</p>
+    </embed>
+</object>
+
+Consider that Island 1 identifies the need to diversify according to some of the rules presented in the previous section. In this case, it sends the message "I need diversity" to the Island 2 (step 1). Island 2 then responds by sending its best individual after receiving the message (step 2).
